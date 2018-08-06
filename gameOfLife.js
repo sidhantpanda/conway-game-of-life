@@ -106,69 +106,195 @@ function GameOfLife() {
         dead: 0
       }
 
-      if (row > 0) {
-        if (this.board[row - 1][column] === false) {
-          info.dead++;
-        } else {
-          info.live++;
-        }
+      let mRow = row;
+      let mColumn = column;
+
+
+      // 1. Top left neighbour
+      if (mRow === 0) {
+        mRow = this.rows - 1;
+      } else {
+        mRow--;
+      }
+      if (mColumn === 0) {
+        mColumn = this.columns - 1;
+      } else {
+        mColumn--;
+      }
+      if (this.board[mRow][mColumn]) {
+        info.live++;
+      } else {
+        info.dead++;
       }
 
-      if (column > 0) {
-        if (this.board[row][column - 1] === false) {
-          info.dead++;
-        } else {
-          info.live++;
-        }
+      // 2. Directly above neigbour
+      mRow = row;
+      mColumn = column;
+      if (mRow === 0) {
+        mRow = this.rows - 1;
+      } else {
+        mRow = mRow - 1;
+      }
+      if (this.board[mRow][mColumn]) {
+        info.live++;
+      } else {
+        info.dead++;
       }
 
-      if (row < this.rows - 1) {
-        if (this.board[row + 1][column] === false) {
-          info.dead++;
-        } else {
-          info.live++;
-        }
+      // 3. Top right neighbour
+      mRow = row;
+      mColumn = column;
+      if (mRow === 0) {
+        mRow = this.rows - 1;
+      } else {
+        mRow--;
+      }
+      if (mColumn === this.columns - 1) {
+        mColumn = 0;
+      } else {
+        mColumn++;
+      }
+      if (this.board[mRow][mColumn]) {
+        info.live++;
+      } else {
+        info.dead++;
       }
 
-      if (column < this.columns - 1) {
-        if (this.board[row][column + 1] === false) {
-          info.dead++;
-        } else {
-          info.live++;
-        }
+      // 4. Directly right neighbour
+      mRow = row;
+      mColumn = column;
+      if (mColumn === this.columns - 1) {
+        mColumn = 0;
+      } else {
+        mColumn++;
+      }
+      if (this.board[mRow][mColumn]) {
+        info.live++;
+      } else {
+        info.dead++;
       }
 
-      if (row > 0 && column > 0) {
-        if (this.board[row - 1][column - 1] === false) {
-          info.dead++;
-        } else {
-          info.live++;
-        }
+      // 5. Bottom right neighbour
+      mRow = row;
+      mColumn = column;
+      if (mRow === this.rows - 1) {
+        mRow = 0;
+      } else {
+        mRow++;
+      }
+      if (mColumn === this.columns - 1) {
+        mColumn = 0;
+      } else {
+        mColumn++;
+      }
+      if (this.board[mRow][mColumn]) {
+        info.live++;
+      } else {
+        info.dead++;
       }
 
-      if (row > 0 && column < this.columns - 1) {
-        if (this.board[row - 1][column + 1] === false) {
-          info.dead++;
-        } else {
-          info.live++;
-        }
+      // 6. Directly bottom neighbour
+      mRow = row;
+      mColumn = column;
+      if (mRow === this.rows - 1) {
+        mRow = 0;
+      } else {
+        mRow++;
+      }
+      if (this.board[mRow][mColumn]) {
+        info.live++;
+      } else {
+        info.dead++;
       }
 
-      if (row < this.rows - 1 && column < this.columns - 1) {
-        if (this.board[row + 1][column + 1] === false) {
-          info.dead++;
-        } else {
-          info.live++;
-        }
+      // 7. Bottom left neighbour
+      mRow = row;
+      mColumn = column;
+      if (mRow === this.rows - 1) {
+        mRow = 0;
+      } else {
+        mRow++;
+      }
+      if (mColumn === 0) {
+        mColumn = this.rows - 1;
+      } else {
+        mColumn--;
+      }
+      if (this.board[mRow][mColumn]) {
+        info.live++;
+      } else {
+        info.dead++;
       }
 
-      if (row < this.rows - 1 && column > 0) {
-        if (this.board[row + 1][column - 1] === false) {
-          info.dead++;
-        } else {
-          info.live++;
-        }
+      // 8. Directly left neighbour
+      mRow = row;
+      mColumn = column;
+      if (mColumn === 0) {
+        mColumn = this.rows - 1;
+      } else {
+        mColumn--;
       }
+      if (this.board[mRow][mColumn]) {
+        info.live++;
+      } else {
+        info.dead++;
+      }
+
+      // if (column > 0) {
+      //   if (this.board[row][column - 1] === false) {
+      //     info.dead++;
+      //   } else {
+      //     info.live++;
+      //   }
+      // }
+
+      // if (row < this.rows - 1) {
+      //   if (this.board[row + 1][column] === false) {
+      //     info.dead++;
+      //   } else {
+      //     info.live++;
+      //   }
+      // }
+
+      // if (column < this.columns - 1) {
+      //   if (this.board[row][column + 1] === false) {
+      //     info.dead++;
+      //   } else {
+      //     info.live++;
+      //   }
+      // }
+
+      // if (row > 0 && column > 0) {
+      //   if (this.board[row - 1][column - 1] === false) {
+      //     info.dead++;
+      //   } else {
+      //     info.live++;
+      //   }
+      // }
+
+      // if (row > 0 && column < this.columns - 1) {
+      //   if (this.board[row - 1][column + 1] === false) {
+      //     info.dead++;
+      //   } else {
+      //     info.live++;
+      //   }
+      // }
+
+      // if (row < this.rows - 1 && column < this.columns - 1) {
+      //   if (this.board[row + 1][column + 1] === false) {
+      //     info.dead++;
+      //   } else {
+      //     info.live++;
+      //   }
+      // }
+
+      // if (row < this.rows - 1 && column > 0) {
+      //   if (this.board[row + 1][column - 1] === false) {
+      //     info.dead++;
+      //   } else {
+      //     info.live++;
+      //   }
+      // }
 
       return info;
     }
