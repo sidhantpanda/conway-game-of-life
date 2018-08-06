@@ -1,14 +1,31 @@
 {
   "name": "conway",
   "version": "1.0.0",
-  "description": "",
+  "description": "Conway's Game of Life CLI",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Sidhant Panda",
+  "license": "MIT",
   "dependencies": {
     "draftlog": "^1.0.12"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sidhantpanda/conway.git"
+  },
+  "keywords": [
+    "game",
+    "of",
+    "life",
+    "conway",
+    "simulation",
+    "terminal"
+  ],
+  "bugs": {
+    "url": "https://github.com/sidhantpanda/conway/issues"
+  },
+  "homepage": "https://github.com/sidhantpanda/conway#readme"
 }
