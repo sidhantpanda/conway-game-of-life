@@ -11,4 +11,7 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 ### Options
 This is currently still under development for options. Currently user can only configure number of rows and columns:
-`node index.js 20 16` will start the game with 20 rows and 16 columns
+
+  `node index.js 20 16`
+
+will start the game with 20 rows and 16 columns
