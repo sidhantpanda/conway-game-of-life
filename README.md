@@ -9,6 +9,24 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 2. Install dependencies: `npm install` or `yarn install`.
 3. Run `node index.js`
 
+## Samples
+I've included 3 samples for fun These are:
+* Blinker 
+
+  ![Blinker configuration](https://media.giphy.com/media/5b9eg7UOynODtk3DBw/200w_d.gif)
+  
+  `node samples/blinker.js`
+* Beacon
+
+  ![Beacon configuration](https://media.giphy.com/media/93fK5oVEGTRBUl2Jeu/200w_d.gif)
+  
+  `node samples/beacon.js`
+* Glider
+  
+  ![Glider configuration](https://media.giphy.com/media/9FW6lSM6SyhrxMNv2Z/giphy.gif)
+  
+  `node samples/glider.js`
+
 ### Options
 This is currently still under development for options. Currently user can only configure number of rows and columns:
 
