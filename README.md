@@ -2,6 +2,8 @@
 Command line version of the [zero player game](https://en.wikipedia.org/wiki/Zero-player_game?oldformat=true). Wiki page here: 
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
+Some context about this here: https://medium.com/@sidhantpanda/conways-game-of-life-explained-with-some-programming-a2970b468580
+
 ![Terminal preview](https://media.giphy.com/media/2UnJcfVZTkXJHAFtLk/giphy.gif)
 
 ## Setup
