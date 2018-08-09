@@ -24,6 +24,23 @@ function GameOfLife() {
 
       this.updateCurrentStats();
     },
+    loadBoardConfig: function (config) {
+      if (config.length > 0) {
+        this.rows = config.length;
+        this.columns = config[0].length;
+        this.board = config;
+        for (let i = 0; i < this.rows; i++) {
+          this.displayMatrix.push(console.draft());
+        }
+
+        this.statsDisplayMatrix['alive'] = console.draft();
+        this.statsDisplayMatrix['dead'] = console.draft();
+        this.statsDisplayMatrix['kills'] = console.draft();
+        this.statsDisplayMatrix['births'] = console.draft();
+
+        this.updateCurrentStats();
+      }
+    },
     board: [],
     displayMatrix: [],
     hasChanged: true,
@@ -133,7 +150,7 @@ function GameOfLife() {
       if (mRow === 0) {
         mRow = this.rows - 1;
       } else {
-        mRow = mRow - 1;
+        mRow--;
       }
       if (this.board[mRow][mColumn]) {
         info.live++;
