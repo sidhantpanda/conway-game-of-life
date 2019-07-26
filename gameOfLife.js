@@ -24,6 +24,23 @@ function GameOfLife() {
 
       this.updateCurrentStats();
     },
+
+    start: function () {
+      this.print();
+      let interval = setInterval(() => {
+        this.tick();
+        if (!this.hasChanged) {
+          clearInterval(interval);
+        }
+        this.print();
+      }, 300);
+    },
+
+    print: function () {
+      this.printBoard();
+      this.printStats();
+    },
+
     loadBoardConfig: function (config) {
       if (config.length > 0) {
         this.rows = config.length;
