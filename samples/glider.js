@@ -3,14 +3,4 @@ const samples = require('./sampleConfigs');
 const game = new GameOfLife();
 
 game.loadBoardConfig(samples.GLIDER);
-game.printBoard();
-game.printStats();
-
-interval = setInterval(() => {
-  game.tick();
-  if (!game.hasChanged) {
-    clearInterval(interval);
-  }
-  game.printBoard();
-  game.printStats();
-}, 300);
+game.start();
