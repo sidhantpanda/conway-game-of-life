@@ -56,19 +56,19 @@ function GameOfLife() {
       let matrixCopy = JSON.parse(JSON.stringify(this.board));
       for (let i = 0; i < this.rows; i++) {
         for (let j = 0; j < this.columns; j++) {
-          const info = this.getNeighbourInfo(i, j);
+          const aliveCount = this.getAliveNeighbourCount(i, j);
           if (this.board[i][j] === true) {
-            if (info.live < 2) {
+            if (aliveCount < 2) {
               matrixCopy[i][j] = false;
               this.stats.kills++;
               hasChanged = true;
-            } else if (info.live > 3) {
+            } else if (aliveCount > 3) {
               matrixCopy[i][j] = false;
               this.stats.kills++;
               hasChanged = true;
             }
           } else {
-            if (info.live === 3) {
+            if (aliveCount === 3) {
               matrixCopy[i][j] = true;
               this.stats.births++;
               hasChanged = true;
@@ -117,203 +117,28 @@ function GameOfLife() {
         }
       }
     },
-    getNeighbourInfo: function (row, column) {
-      const info = {
-        live: 0,
-        dead: 0
+
+    getAliveNeighbourCount: function (row, column) {
+      let aliveCount = 0;
+
+      for (let ni = row - 1; ni <= row + 1; ni++) {
+        for (let nj = column - 1; nj <= column + 1; nj++) {
+          if (ni < 0 || ni >= this.board.length) {
+            continue;
+          }
+          if (nj < 0 || nj >= this.board[0].length) {
+            continue;
+          }
+          if (ni === row && nj === column) {
+            continue;
+          }
+          if (this.board[ni][nj]) {
+            aliveCount++;
+          }
+        }
       }
 
-      let mRow = row;
-      let mColumn = column;
-
-
-      // 1. Top left neighbour
-      if (mRow === 0) {
-        mRow = this.rows - 1;
-      } else {
-        mRow--;
-      }
-      if (mColumn === 0) {
-        mColumn = this.columns - 1;
-      } else {
-        mColumn--;
-      }
-      if (this.board[mRow][mColumn]) {
-        info.live++;
-      } else {
-        info.dead++;
-      }
-
-      // 2. Directly above neigbour
-      mRow = row;
-      mColumn = column;
-      if (mRow === 0) {
-        mRow = this.rows - 1;
-      } else {
-        mRow--;
-      }
-      if (this.board[mRow][mColumn]) {
-        info.live++;
-      } else {
-        info.dead++;
-      }
-
-      // 3. Top right neighbour
-      mRow = row;
-      mColumn = column;
-      if (mRow === 0) {
-        mRow = this.rows - 1;
-      } else {
-        mRow--;
-      }
-      if (mColumn === this.columns - 1) {
-        mColumn = 0;
-      } else {
-        mColumn++;
-      }
-      if (this.board[mRow][mColumn]) {
-        info.live++;
-      } else {
-        info.dead++;
-      }
-
-      // 4. Directly right neighbour
-      mRow = row;
-      mColumn = column;
-      if (mColumn === this.columns - 1) {
-        mColumn = 0;
-      } else {
-        mColumn++;
-      }
-      if (this.board[mRow][mColumn]) {
-        info.live++;
-      } else {
-        info.dead++;
-      }
-
-      // 5. Bottom right neighbour
-      mRow = row;
-      mColumn = column;
-      if (mRow === this.rows - 1) {
-        mRow = 0;
-      } else {
-        mRow++;
-      }
-      if (mColumn === this.columns - 1) {
-        mColumn = 0;
-      } else {
-        mColumn++;
-      }
-      if (this.board[mRow][mColumn]) {
-        info.live++;
-      } else {
-        info.dead++;
-      }
-
-      // 6. Directly bottom neighbour
-      mRow = row;
-      mColumn = column;
-      if (mRow === this.rows - 1) {
-        mRow = 0;
-      } else {
-        mRow++;
-      }
-      if (this.board[mRow][mColumn]) {
-        info.live++;
-      } else {
-        info.dead++;
-      }
-
-      // 7. Bottom left neighbour
-      mRow = row;
-      mColumn = column;
-      if (mRow === this.rows - 1) {
-        mRow = 0;
-      } else {
-        mRow++;
-      }
-      if (mColumn === 0) {
-        mColumn = this.rows - 1;
-      } else {
-        mColumn--;
-      }
-      if (this.board[mRow][mColumn]) {
-        info.live++;
-      } else {
-        info.dead++;
-      }
-
-      // 8. Directly left neighbour
-      mRow = row;
-      mColumn = column;
-      if (mColumn === 0) {
-        mColumn = this.rows - 1;
-      } else {
-        mColumn--;
-      }
-      if (this.board[mRow][mColumn]) {
-        info.live++;
-      } else {
-        info.dead++;
-      }
-
-      // if (column > 0) {
-      //   if (this.board[row][column - 1] === false) {
-      //     info.dead++;
-      //   } else {
-      //     info.live++;
-      //   }
-      // }
-
-      // if (row < this.rows - 1) {
-      //   if (this.board[row + 1][column] === false) {
-      //     info.dead++;
-      //   } else {
-      //     info.live++;
-      //   }
-      // }
-
-      // if (column < this.columns - 1) {
-      //   if (this.board[row][column + 1] === false) {
-      //     info.dead++;
-      //   } else {
-      //     info.live++;
-      //   }
-      // }
-
-      // if (row > 0 && column > 0) {
-      //   if (this.board[row - 1][column - 1] === false) {
-      //     info.dead++;
-      //   } else {
-      //     info.live++;
-      //   }
-      // }
-
-      // if (row > 0 && column < this.columns - 1) {
-      //   if (this.board[row - 1][column + 1] === false) {
-      //     info.dead++;
-      //   } else {
-      //     info.live++;
-      //   }
-      // }
-
-      // if (row < this.rows - 1 && column < this.columns - 1) {
-      //   if (this.board[row + 1][column + 1] === false) {
-      //     info.dead++;
-      //   } else {
-      //     info.live++;
-      //   }
-      // }
-
-      // if (row < this.rows - 1 && column > 0) {
-      //   if (this.board[row + 1][column - 1] === false) {
-      //     info.dead++;
-      //   } else {
-      //     info.live++;
-      //   }
-      // }
-
-      return info;
+      return aliveCount;
     }
   }
 }
