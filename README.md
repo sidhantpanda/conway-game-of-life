@@ -9,7 +9,7 @@ Some context about this here: https://medium.com/@sidhantpanda/conways-game-of-l
 ## Setup
 1. Clone this repo
 2. Install dependencies: `npm install` or `yarn install`.
-3. Run `npm start [rows][columns]`
+3. Run `npm start [rows] [columns]`
 
 ## Samples
 I've included 3 samples for fun These are:
